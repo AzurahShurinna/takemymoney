@@ -2,12 +2,15 @@ package technocite.be.takemymoney.repository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Repository;
 import technocite.be.takemymoney.model.OweMoney;
 
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hibernate.validator.internal.util.CollectionHelper.newArrayList;
 @Repository
@@ -51,7 +54,16 @@ public class OweRepositoryImpl implements OweDao {
             System.out.println("veuillez entrer un numero de dette existant");
             return false;
         }
+    }
 
+    @PostConstruct
+    private void onPostConstruct(){
+        try {
+            listDettes.add(new OweMoney(UUID.randomUUID().toString(),"abcd@gmail.com", "abdc1234@gmail.com", 25.0));
+            listDettes.add(new OweMoney(UUID.randomUUID().toString(),"IvanDuShit@gmail.com", "abdc1234@gmail.com", 100.0));
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
 
 
     }

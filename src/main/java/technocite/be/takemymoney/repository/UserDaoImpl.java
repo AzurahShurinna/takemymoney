@@ -1,8 +1,10 @@
 package technocite.be.takemymoney.repository;
 
+import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Repository;
 import technocite.be.takemymoney.model.User;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +35,19 @@ public class UserDaoImpl implements  UserDao {
     @Override
     public List<User> findAllUser() {
         return users;
+    }
+
+    @PostConstruct
+    private void onPostConstruct(){
+        try {
+            users.add(new User("abcd@gmail.com", "1234","MamyTraillette", true));
+            users.add(new User("abdc1234@gmail.com", "1234","JeanCaisse", true));
+            users.add(new User("1234@gmail.com", "1234","JeanFeDTonnes", true));
+            users.add(new User("IvanDuShit@gmail.com", "1234","IvanDuShit", true));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+        }
     }
 }

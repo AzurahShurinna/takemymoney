@@ -13,6 +13,8 @@ import technocite.be.takemymoney.service.OweService;
 import technocite.be.takemymoney.service.UserService;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
+
 //add methode searchByUserBorrowId
 @RestController
 @RequestMapping ("/User")
@@ -39,6 +41,10 @@ public class UserOweController {
       return userService.addUser(userDto);
     }
 
+    @GetMapping
+    public List<UserDto> getAll(){
+        return userService.findAllUser();
+    }
 
 
 }

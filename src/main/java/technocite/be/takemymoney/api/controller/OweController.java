@@ -32,6 +32,11 @@ public class OweController {
         }
     }
 
+    @GetMapping
+    public List<OweDto> findAll(){
+        return oweService.ff();
+    }
+
     @GetMapping(value = "{id}")
     public ResponseEntity<OweDto> findById(String id){
         OweDto oweDto = oweService.findById(id);
