@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface OweDao {
 
-    List<OweMoney> ff();
+    List<OweMoney> findAll();
 
     OweMoney addDette(OweMoney oweMoney);
 
-    boolean removeDette(OweMoney oweMoney);
+    boolean removeDette(String id);
 
     OweMoney findById(String id);
+
+
 
 
 }

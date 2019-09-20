@@ -1,18 +1,13 @@
-package technocite.be.takemymoney.model;
+package technocite.be.takemymoney.api.dto;
 
-
-import java.util.Objects;
-
-public class User {
+public class UserDto {
 
     private String email;
     private String password;
     private String fullname;
     private boolean enabled;
 
-
-
-    public User(String email, String password, String fullname, boolean enabled) {
+    public UserDto(String email, String password, String fullname, boolean enabled) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
@@ -33,18 +28,5 @@ public class User {
 
     public boolean isEnabled() {
         return enabled;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return email.equals(user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email);
     }
 }

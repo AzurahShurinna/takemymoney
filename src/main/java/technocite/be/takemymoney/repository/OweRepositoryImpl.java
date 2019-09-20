@@ -1,10 +1,10 @@
 package technocite.be.takemymoney.repository;
 
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import technocite.be.takemymoney.model.OweMoney;
-import technocite.be.takemymoney.model.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class OweRepositoryImpl implements OweDao {
     private ArrayList<OweMoney> listDettes = newArrayList();
 
     @Override
-    public List<OweMoney> ff() {
+    public List<OweMoney> findAll() {
         return listDettes;
     }
 
@@ -39,8 +39,20 @@ public class OweRepositoryImpl implements OweDao {
         return listDettes.stream().filter(oweMoney -> oweMoney.getId().equals(id)).findFirst().orElse(null);
     }
 
+
     @Override
-    public boolean removeDette(OweMoney oweMoney) {
-        return listDettes.remove(oweMoney);
+    public boolean removeDette(String id) {
+
+        OweMoney oweMoney = findById(id);
+
+        if (oweMoney != null){
+            return listDettes.remove(oweMoney);
+        } else {
+            System.out.println("veuillez entrer un numero de dette existant");
+            return false;
+        }
+
+
+
     }
 }
