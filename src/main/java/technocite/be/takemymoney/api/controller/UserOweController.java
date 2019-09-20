@@ -14,7 +14,7 @@ import technocite.be.takemymoney.service.UserService;
 
 import javax.annotation.PostConstruct;
 //add methode searchByUserBorrowId
-@Controller
+@RestController
 @RequestMapping ("/User")
 public class UserOweController {
 

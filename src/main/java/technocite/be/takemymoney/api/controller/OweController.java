@@ -5,10 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import technocite.be.takemymoney.api.dto.OweDto;
+import technocite.be.takemymoney.model.OweMoney;
 import technocite.be.takemymoney.repository.OweDao;
 import technocite.be.takemymoney.service.OweService;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/Dettes")
 public class OweController {
 
     @Autowired
@@ -37,5 +41,14 @@ public class OweController {
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
+    @GetMapping(path = "/searchEmprunteur")
+    public List<OweDto> searchByEmprunter(@RequestParam String emailEmprunteur){
+       return oweService.searchByEmprunteur(emailEmprunteur);
+    }
+
+    @GetMapping(path = "/searchDonneur")
+    public List<OweDto> searchByGiver(@RequestParam String emailDonneur){
+        return oweService.searchByDonneur(emailDonneur);
     }
 }
